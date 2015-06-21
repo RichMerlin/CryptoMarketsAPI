@@ -193,7 +193,7 @@ abstract class CustomJsonAPI<RESULT> {
                         + " answer\n" + msg);
             }
         } catch (IOException ex) {
-            throw new RuntimeException("Can't connect to server");
+            throw new RuntimeException("Can't connect to server", ex);
         } finally {
             if (connection != null) {
                 connection.disconnect(); 
