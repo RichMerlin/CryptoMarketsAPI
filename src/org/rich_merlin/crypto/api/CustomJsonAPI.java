@@ -68,10 +68,16 @@ abstract class CustomJsonAPI<RESULT> {
     }
     
     protected final void setParam(String paramName, Object paramValue) {
+        if (paramName == null || paramValue == null) {
+            throw new IllegalStateException("Parameter '" + paramName + "' is incorrect");
+        }
         apiParams.put(paramName, paramValue);
     }
     
     protected final void setHeader(String headerName, Object headerValue) {
+        if (headerName == null || headerValue == null) {
+            throw new IllegalStateException("Header '" + headerName + "' is incorrect");
+        }
         apiHeaders.put(headerName, headerValue);
     }
     

@@ -49,7 +49,91 @@ public class BtceApiTypes {
             }
             throw new IllegalArgumentException();
         }
-    };
+    }
+    
+    public enum OrderState {
+        ACTIVE(0), CANCELED(2), FILLED(1), PARTIALLY_FILLED(3);
+        
+        private final Integer value;
+        
+        OrderState(Integer value) {
+            this.value = value;
+        }
+        
+        public Integer getValue() {
+            return value;
+        }
+        
+        @Override
+        public String toString() {
+            return getValue().toString();
+        }
+        
+        public static OrderState getEnum(Integer value) {
+            for (OrderState v : values()) {
+                if(v.getValue().equals(value)) {
+                    return v;
+                }
+            }
+            throw new IllegalArgumentException();
+        }
+    }
+    
+    public enum TransactionState {
+        SUCCESS(2), WAITING_ACCEPTANCE(1), REJECTED(0), UNCONFIRMED(3);
+        
+        private final Integer value;
+        
+        TransactionState(Integer value) {
+            this.value = value;
+        }
+        
+        public Integer getValue() {
+            return value;
+        }
+        
+        @Override
+        public String toString() {
+            return getValue().toString();
+        }
+        
+        public static TransactionState getEnum(Integer value) {
+            for (TransactionState v : values()) {
+                if(v.getValue().equals(value)) {
+                    return v;
+                }
+            }
+            throw new IllegalArgumentException();
+        }
+    }
+    
+    public enum TransactionType {
+        DEPOSIT(1), WITHDRAWAL(2), DEBIT(5), CREDIT(4);
+        
+        private final Integer value;
+        
+        TransactionType(Integer value) {
+            this.value = value;
+        }
+        
+        public Integer getValue() {
+            return value;
+        }
+        
+        @Override
+        public String toString() {
+            return getValue().toString();
+        }
+        
+        public static TransactionType getEnum(Integer value) {
+            for (TransactionType v : values()) {
+                if(v.getValue().equals(value)) {
+                    return v;
+                }
+            }
+            throw new IllegalArgumentException();
+        }
+    }
     
     public enum SortingType {
         ASC, DESC;
@@ -118,7 +202,7 @@ public class BtceApiTypes {
         
         public static Coins getEnum(String value) {
             for (Coins v : values()) {
-                if(v.getValue().equals(value)) {
+                if(v.getValue().equalsIgnoreCase(value)) {
                     return v;
                 }
             }
